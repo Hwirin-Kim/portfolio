@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import RevealText from "../animations/RevealText";
 import TypewriterEffect from "../animations/TypewriterEffect";
 import ScrollIndicator from "./ScrollIndicator";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -53,7 +54,11 @@ export default function HeroSection() {
             transition={{ delay: 1.2 }}
             className="text-lg md:text-xl text-white/60 mb-12"
           >
-            <TypewriterEffect text="안녕하세요!" delay={1.5} speed={50} />
+            <TypewriterEffect
+              text="유지보수성과 확장성을 고려해 제품을 설계합니다."
+              delay={1}
+              speed={50}
+            />
           </motion.div>
 
           {/* CTA Buttons */}
@@ -63,24 +68,24 @@ export default function HeroSection() {
             transition={{ delay: 2 }}
             className="flex items-center justify-center gap-4"
           >
-            <a
-              href="#projects"
+            <Link
+              href="/about"
               className="px-8 py-3 bg-primary text-black font-medium rounded-lg hover:bg-primary-light transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]"
             >
-              View Projects
-            </a>
-            <a
-              href="#contact"
+              About Me
+            </Link>
+            <Link
+              href="/projects"
               className="px-8 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 transition-all"
             >
-              Get in Touch
-            </a>
+              View Projects
+            </Link>
           </motion.div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <ScrollIndicator />
+      {/* <ScrollIndicator /> */}
     </section>
   );
 }

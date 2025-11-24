@@ -7,7 +7,7 @@ export default function Home() {
       <HeroSection />
 
       {/* Preview Section */}
-      <section className="py-32 bg-surface">
+      {/* <section className="py-32 bg-surface">
         <div className="container mx-auto px-4">
           <ScrollReveal>
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
@@ -29,7 +29,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

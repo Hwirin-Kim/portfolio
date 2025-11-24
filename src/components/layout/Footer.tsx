@@ -1,4 +1,5 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Rss } from "lucide-react";
+import { CONSTANT } from "@/constant/constant";
 
 export default function Footer() {
   return (
@@ -11,7 +12,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com"
+              href={CONSTANT.GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/50 hover:text-primary transition-colors"
@@ -19,15 +20,15 @@ export default function Footer() {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href={CONSTANT.BLOG_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/50 hover:text-primary transition-colors"
             >
-              <Linkedin className="w-5 h-5" />
+              <Rss className="w-5 h-5" />
             </a>
             <a
-              href="mailto:your@email.com"
+              href={`mailto:${CONSTANT.EMAIL}`}
               className="text-white/50 hover:text-primary transition-colors"
             >
               <Mail className="w-5 h-5" />
@@ -38,4 +39,3 @@ export default function Footer() {
     </footer>
   );
 }
-
