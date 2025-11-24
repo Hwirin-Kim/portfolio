@@ -1,38 +1,43 @@
 export const principles = [
   {
-    title: "User-Centered Design",
-    description: "모든 결정은 사용자 경험을 최우선으로 합니다.",
+    title: "Solve Real Problems",
+    description:
+      "코드는 기능 구현이 아니라, 세상의 실제 문제를 해결하기 위한 도구라고 믿습니다.",
   },
   {
-    title: "Clean Code",
-    description: "가독성 높고 유지보수 가능한 코드를 작성합니다.",
+    title: "Clean Code First",
+    description: "누가 봐도 이해되는 단순하고 명확한 코드를 지향합니다.",
   },
   {
-    title: "Continuous Learning",
-    description: "새로운 기술과 트렌드를 끊임없이 학습합니다.",
+    title: "Design with Structure",
+    description:
+      "UI와 비즈니스 로직을 분리하고, 유지보수 가능한 구조를 우선합니다.",
   },
   {
-    title: "Collaboration",
-    description: "팀과의 협업을 통해 더 나은 결과를 만듭니다.",
+    title: "Learn & Adapt Fast",
+    description: "새로운 기술은 직접 만들고 사용하며 빠르게 흡수합니다.",
   },
 ];
 
 export const workProcess = [
   {
-    step: "1. Research",
-    description: "문제를 깊이 이해하고 요구사항을 분석합니다.",
+    step: "Understand the Problem",
+    description:
+      "겉으로 보이는 기능이 아니라, 해결해야 할 실제 문제의 본질을 정의합니다.",
   },
   {
-    step: "2. Design",
-    description: "사용자 경험을 고려한 설계를 진행합니다.",
+    step: "Plan Before Code",
+    description: "바로 코드를 작성하지 않고 흐름과 책임을 먼저 설계합니다.",
   },
   {
-    step: "3. Develop",
-    description: "최신 기술로 효율적으로 구현합니다.",
+    step: "Design the Structure",
+    description:
+      "UI와 비즈니스 로직을 분리하며 유지보수 가능한 구조를 구체적으로 설계합니다.",
   },
   {
-    step: "4. Test & Iterate",
-    description: "철저한 테스트와 지속적인 개선을 진행합니다.",
+    step: "Build & Iterate",
+    description:
+      "실용적이고 예측 가능한 코드로 구현하고, 테스트 기반으로 개선을 반복합니다.",
   },
 ];
 
@@ -59,26 +64,44 @@ export const strengths = [
   },
 ];
 
-export const timeline = [
+export const career = [
   {
-    year: "2024",
-    title: "Senior Developer",
-    description: "Leading frontend development and mentoring junior developers.",
-  },
-  {
-    year: "2023",
-    title: "Full Stack Developer",
-    description: "Built multiple production-ready web applications.",
-  },
-  {
-    year: "2022",
-    title: "Frontend Developer",
-    description: "Specialized in React and modern web technologies.",
-  },
-  {
-    year: "2021",
-    title: "Started Journey",
-    description: "Began learning web development and programming.",
+    year: "2023. 12. ~ 2025. 05. [1년 6개월]",
+    title: "주식회사 네이처컴바인드",
+    role: "Frontend Developer / 선임연구원",
+    descriptions: [
+      "자사 웹/앱 프론트엔드 개발 및 유지보수",
+      "SI 프로젝트 Full Stack 개발 및 유지보수",
+      "AI 챗봇 프로젝트 개발 및 유지보수",
+    ],
   },
 ];
 
+export const timeline = [
+  {
+    year: "2025. 07. ~ 2025. 09",
+    title: "항해 플러스 - 프론트엔드",
+    descriptions: [
+      "웹 개발의 원리·아키텍처·테스트·클린코드를 심화 학습하는 실무형 커리큘럼",
+      "최고 등급인 Black Badge로 수료",
+    ],
+  },
+  {
+    year: "2022. 08. ~ 2022. 12.",
+    title: "항해 99 - 웹개발 종합반",
+    descriptions: [
+      "웹 개발의 A to Z를 학습하는 실무 중심의 커리큘럼 과정 수료",
+      "동료를 제일 많이 도와주는 최고의 동료로 선정",
+    ],
+  },
+  {
+    year: "2019. 06. ~ 2020. 01.",
+    title: "대만 동해대학교 - 중국어학당",
+    descriptions: ["대만 동해대학교의 중국어학당에서 중급과정 수료"],
+  },
+  {
+    year: "2011. 03. ~ 2017. 02.",
+    title: "군산대학교 - 물리학과",
+    descriptions: ["물리학과에서 물리학 학사로 졸업", "학점 : 4.18/4.50"],
+  },
+];

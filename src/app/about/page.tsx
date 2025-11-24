@@ -2,7 +2,7 @@
 
 import ScrollySection from "@/components/about/ScrollySection";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { principles, workProcess, strengths, timeline } from "@/lib/data/about";
+import { principles, workProcess, career, timeline } from "@/lib/data/about";
 import { motion } from "framer-motion";
 
 export default function AboutPage() {
@@ -65,41 +65,40 @@ export default function AboutPage() {
         </div>
       </ScrollySection>
 
-      {/* Strengths */}
-      <ScrollySection title="Strengths" index={2}>
-        <div className="space-y-8">
-          {strengths.map((strength, index) => (
-            <div key={index} className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-2xl font-bold">{strength.title}</h3>
-                <span className="text-primary font-bold">{strength.level}%</span>
-              </div>
-              <div className="h-3 bg-card rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${strength.level}%` }}
-                  transition={{ duration: 1, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  className="h-full bg-gradient-to-r from-primary to-primary-light"
-                />
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {strength.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm border border-primary/30"
-                  >
-                    {skill}
+      {/* Career Experience */}
+      <ScrollySection title="Career Experience" index={2}>
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
+          <div className="space-y-12 pl-12">
+            {career.map((item, index) => (
+              <div key={index} className="relative">
+                <div className="absolute -left-[51px] w-4 h-4 rounded-full bg-primary border-4 border-background" />
+                <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border border-border hover:border-primary transition-all">
+                  <span className="text-primary font-bold text-lg">
+                    {item.year}
                   </span>
-                ))}
+                  <h3 className="text-2xl font-bold mt-2 mb-1">{item.title}</h3>
+                  <p className="text-primary-light text-lg mb-3">{item.role}</p>
+                  <ul className="space-y-2">
+                    {item.descriptions.map((description, idx) => (
+                      <li
+                        key={idx}
+                        className="text-white/60 flex items-start gap-2"
+                      >
+                        <span className="text-primary mt-1">•</span>
+                        <span>{description}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </ScrollySection>
 
-      {/* Growth Timeline */}
-      <ScrollySection title="Growth Timeline" index={3}>
+      {/* Education Timeline */}
+      <ScrollySection title="Education Timeline" index={3}>
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
           <div className="space-y-12 pl-12">
@@ -110,10 +109,12 @@ export default function AboutPage() {
                   <span className="text-primary font-bold text-lg">
                     {item.year}
                   </span>
-                  <h3 className="text-2xl font-bold mt-2 mb-3">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/60">{item.description}</p>
+                  <h3 className="text-2xl font-bold mt-2 mb-3">{item.title}</h3>
+                  {item.descriptions.map((description, index) => (
+                    <p key={index} className="text-white/60">
+                      {description}
+                    </p>
+                  ))}
                 </div>
               </div>
             ))}
@@ -143,4 +144,3 @@ export default function AboutPage() {
     </main>
   );
 }
-

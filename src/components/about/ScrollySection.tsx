@@ -31,11 +31,11 @@ export default function ScrollySection({
       className="min-h-screen flex items-center justify-center"
     >
       <div className="container mx-auto px-4">
-        <div className={`max-w-4xl mx-auto ${index % 2 === 0 ? "text-left" : "text-right"}`}>
-          <h2 className="text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent">
+        <div className="max-w-4xl mx-auto">
+          <h2 className={`text-5xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-white to-primary bg-clip-text text-transparent ${index % 2 === 0 ? "text-left" : "text-right"}`}>
             {title}
           </h2>
-          <div className="text-lg md:text-xl text-white/70 space-y-6">
+          <div className="text-lg md:text-xl text-white/70 space-y-6 text-left">
             {children}
           </div>
         </div>
