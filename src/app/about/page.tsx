@@ -29,7 +29,7 @@ export default function AboutPage() {
       </section>
 
       {/* My Principles */}
-      <ScrollySection title="My Principles" index={0}>
+      <ScrollySection title="개발 철학" index={0}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {principles.map((principle, index) => (
             <div
@@ -46,7 +46,7 @@ export default function AboutPage() {
       </ScrollySection>
 
       {/* How I Work */}
-      <ScrollySection title="How I Work" index={1}>
+      <ScrollySection title="개발 방법" index={1}>
         <div className="space-y-8">
           {workProcess.map((process, index) => (
             <div
@@ -66,7 +66,7 @@ export default function AboutPage() {
       </ScrollySection>
 
       {/* Career Experience */}
-      <ScrollySection title="Career Experience" index={2}>
+      <ScrollySection title="경력" index={2}>
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
           <div className="space-y-12 pl-12">
@@ -98,7 +98,7 @@ export default function AboutPage() {
       </ScrollySection>
 
       {/* Education Timeline */}
-      <ScrollySection title="Education Timeline" index={3}>
+      <ScrollySection title="교육" index={3}>
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
           <div className="space-y-12 pl-12">
