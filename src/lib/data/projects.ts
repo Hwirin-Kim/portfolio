@@ -10,6 +10,7 @@ export const projects: Project[] = [
     shortDescription: "실시간 재고 관리와 결제 시스템이 통합된 이커머스 플랫폼",
 
     overview: {
+      company: "개인프로젝트",
       period: "2024.01 ~ 2024.03",
       team: "6명 (FE 2, BE 2, Designer 2)",
       role: "Frontend Developer",
@@ -102,6 +103,7 @@ Server Components와 Client Components를 적절히 분리하여 성능을 극�
     shortDescription: "실시간 협업이 가능한 태스크 관리 애플리케이션",
 
     overview: {
+      company: "개인프로젝트",
       period: "2023.09 ~ 2023.12",
       team: "4명 (FE 2, BE 1, Designer 1)",
       role: "Frontend Developer",
@@ -159,6 +161,7 @@ Server Components와 Client Components를 적절히 분리하여 성능을 극�
     shortDescription: "GPT-4를 활용한 마케팅 콘텐츠 생성 플랫폼",
 
     overview: {
+      company: "개인프로젝트",
       period: "2023.05 ~ 2023.08",
       role: "Full Stack Developer",
       description: `AI를 활용하여 블로그 포스트, 소셜 미디어 콘텐츠, 
@@ -196,6 +199,7 @@ Server Components와 Client Components를 적절히 분리하여 성능을 극�
     shortDescription: "크리에이터를 위한 헤드리스 CMS 플랫폼",
 
     overview: {
+      company: "개인프로젝트",
       period: "2023.02 ~ 2023.04",
       role: "Frontend Developer",
       description: `크리에이티브 전문가들이 자신의 작업물을 쉽게 쇼케이스할 수 있는 

@@ -32,6 +32,7 @@ export const showcaseProjectTemplate: ShowcaseProject = {
   // 탭1: 프로젝트 소개
   // ============================================
   overview: {
+    company: "개인프로젝트", // 또는 "네이처컴바인드", "주식회사 OO" 등
     period: "2024.01 ~ 2024.03",
     team: "5명 (FE 2, BE 2, Designer 1)", // 선택사항
     role: "Frontend Developer",

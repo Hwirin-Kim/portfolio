@@ -266,6 +266,14 @@ export default function ProjectModal({
 
                   {/* 프로젝트 정보 */}
                   <div className="flex flex-wrap gap-4 text-sm">
+                    {project.overview.company && (
+                      <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg">
+                        <Building2 className="w-4 h-4 text-primary" />
+                        <span className="text-white/70">
+                          {project.overview.company}
+                        </span>
+                      </div>
+                    )}
                     <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg">
                       <Calendar className="w-4 h-4 text-primary" />
                       <span className="text-white/70">

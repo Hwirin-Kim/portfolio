@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useRef, useState, MouseEvent, useMemo } from "react";
+import { ReactNode, useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 interface SpotlightCardProps {
@@ -8,8 +8,17 @@ interface SpotlightCardProps {
   className?: string;
 }
 
+interface Star {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+}
+
 // 별 생성 (랜덤 위치, 크기, 딜레이)
-const generateStars = (count: number) => {
+const generateStars = (count: number): Star[] => {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
     x: Math.random() * 100, // %
@@ -26,9 +35,14 @@ export default function SpotlightCard({
 }: SpotlightCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [stars, setStars] = useState<Star[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // 별 20개 생성 (컴포넌트당 한 번만)
-  const stars = useMemo(() => generateStars(20), []);
+  // 클라이언트에서만 별 생성 (hydration 에러 방지)
+  useEffect(() => {
+    setStars(generateStars(20));
+    setIsMounted(true);
+  }, []);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -53,41 +67,43 @@ export default function SpotlightCard({
       }}
       className={`relative group ${className}`}
     >
-      {/* 별 반짝임 효과 - 호버 시 활성화 */}
-      <div className="pointer-events-none absolute inset-0 rounded-xl overflow-hidden z-20">
-        {stars.map((star) => (
-          <motion.div
-            key={star.id}
-            className="absolute rounded-full"
-            style={{
-              left: `${star.x}%`,
-              top: `${star.y}%`,
-              width: `${star.size}px`,
-              height: `${star.size}px`,
-              background:
-                "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(34,197,94,0.8) 50%, transparent 100%)",
-              boxShadow:
-                "0 0 10px rgba(34,197,94,0.8), 0 0 20px rgba(34,197,94,0.4)",
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={
-              isHovered
-                ? {
-                    opacity: [0, 1, 0.7, 1, 0],
-                    scale: [0, 1.2, 0.8, 1.2, 0],
-                  }
-                : { opacity: 0, scale: 0 }
-            }
-            transition={{
-              duration: star.duration,
-              delay: star.delay,
-              repeat: Infinity,
-              repeatDelay: Math.random() * 2,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
+      {/* 별 반짝임 효과 - 호버 시 활성화 (클라이언트에서만 렌더링) */}
+      {isMounted && (
+        <div className="pointer-events-none absolute inset-0 rounded-xl overflow-hidden z-20">
+          {stars.map((star) => (
+            <motion.div
+              key={star.id}
+              className="absolute rounded-full"
+              style={{
+                left: `${star.x}%`,
+                top: `${star.y}%`,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                background:
+                  "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(34,197,94,0.8) 50%, transparent 100%)",
+                boxShadow:
+                  "0 0 10px rgba(34,197,94,0.8), 0 0 20px rgba(34,197,94,0.4)",
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={
+                isHovered
+                  ? {
+                      opacity: [0, 1, 0.7, 1, 0],
+                      scale: [0, 1.2, 0.8, 1.2, 0],
+                    }
+                  : { opacity: 0, scale: 0 }
+              }
+              transition={{
+                duration: star.duration,
+                delay: star.delay,
+                repeat: Infinity,
+                repeatDelay: Math.random() * 2,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+      )}
 
       {/* 부드러운 Glow Border */}
       <div className="absolute -inset-[1px] rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
