@@ -81,24 +81,35 @@ export const staggerContainer: Variants = {
 
 // 모달 배경
 export const modalBackdrop: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { 
+    opacity: 0,
+    pointerEvents: 'none' as any,
+  },
   visible: {
     opacity: 1,
+    pointerEvents: 'auto' as any,
     transition: { duration: 0.25 },
   },
   exit: {
     opacity: 0,
+    pointerEvents: 'none' as any,
     transition: { duration: 0.25 },
   },
 };
 
 // 모달 컨텐츠
 export const modalContent: Variants = {
-  hidden: { opacity: 0, scale: 0.95, y: 20 },
+  hidden: { 
+    opacity: 0, 
+    scale: 0.95, 
+    y: 20,
+    pointerEvents: 'none' as any,
+  },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
+    pointerEvents: 'auto' as any,
     transition: {
       duration: 0.3,
       ease: easing,
@@ -108,6 +119,7 @@ export const modalContent: Variants = {
     opacity: 0,
     scale: 0.95,
     y: 20,
+    pointerEvents: 'none' as any,
     transition: { duration: 0.25 },
   },
 };
