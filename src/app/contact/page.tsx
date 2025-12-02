@@ -9,31 +9,31 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "your@email.com",
-    href: "mailto:your@email.com",
+    value: "kimhuirin@gmail.com",
+    href: "mailto:kimhuirin@gmail.com",
     color: "from-blue-500 to-blue-600",
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "@yourusername",
-    href: "https://github.com",
+    value: "@Hwirin-Kim",
+    href: "https://github.com/Hwirin-Kim",
     color: "from-gray-500 to-gray-600",
   },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "Your Name",
-    href: "https://linkedin.com",
-    color: "from-blue-600 to-blue-700",
-  },
-  {
-    icon: MessageCircle,
-    label: "Discord",
-    value: "username#0000",
-    href: "#",
-    color: "from-indigo-500 to-indigo-600",
-  },
+  // {
+  //   icon: Linkedin,
+  //   label: "LinkedIn",
+  //   value: "Your Name",
+  //   href: "https://linkedin.com",
+  //   color: "from-blue-600 to-blue-700",
+  // },
+  // {
+  //   icon: MessageCircle,
+  //   label: "Discord",
+  //   value: "username#0000",
+  //   href: "#",
+  //   color: "from-indigo-500 to-indigo-600",
+  // },
 ];
 
 export default function ContactPage() {

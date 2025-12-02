@@ -1,72 +1,129 @@
+// 스킬 레벨 타입
+export type SkillLevel = "expert" | "proficient" | "familiar";
+
+// 레벨별 정보
+export const skillLevelInfo: Record<
+  SkillLevel,
+  { label: string; description: string; color: string; bgColor: string }
+> = {
+  expert: {
+    label: "전문",
+    description: "심화 개념 이해, 최적화/아키텍처 설계, 팀 내 기술 리드 가능",
+    color: "text-primary",
+    bgColor: "bg-primary/20 border-primary/50",
+  },
+  proficient: {
+    label: "숙련",
+    description: "실무에서 독립적으로 활용, 문제 해결 및 구현 가능",
+    color: "text-blue-400",
+    bgColor: "bg-blue-500/20 border-blue-500/50",
+  },
+  familiar: {
+    label: "기초",
+    description: "기본 개념 이해, 프로젝트에서 활용 경험 있음",
+    color: "text-white/60",
+    bgColor: "bg-white/10 border-white/20",
+  },
+};
+
+// 개별 스킬 인터페이스
 export interface Skill {
   name: string;
-  level: number;
-  icon?: string;
+  level: SkillLevel;
+  experience: string; // "3년+", "2년", "6개월" 등
 }
 
+// 스킬 카테고리 인터페이스
 export interface SkillCategory {
   category: string;
-  description: string;
+  icon: string;
   skills: Skill[];
 }
 
+// 스킬 데이터 - 라이브러리/프레임워크 단위
 export const skillCategories: SkillCategory[] = [
   {
-    category: "Frontend Development",
-    description: "Building beautiful and performant user interfaces",
+    category: "Frontend Core",
+    icon: "⚛️",
     skills: [
-      { name: "React", level: 95 },
-      { name: "Next.js", level: 95 },
-      { name: "TypeScript", level: 90 },
-      { name: "Tailwind CSS", level: 90 },
-      { name: "Framer Motion", level: 85 },
-      { name: "Redux/Zustand", level: 85 },
+      { name: "React", level: "expert", experience: "3년+" },
+      { name: "Next.js", level: "proficient", experience: "2년" },
+      { name: "TypeScript", level: "expert", experience: "3년+" },
+      { name: "JavaScript", level: "expert", experience: "3년+" },
     ],
   },
   {
-    category: "Backend Development",
-    description: "Creating robust and scalable server-side applications",
+    category: "State Management",
+    icon: "🔄",
     skills: [
-      { name: "Node.js", level: 85 },
-      { name: "Express", level: 85 },
-      { name: "PostgreSQL", level: 80 },
-      { name: "MongoDB", level: 80 },
-      { name: "GraphQL", level: 75 },
-      { name: "Redis", level: 70 },
+      { name: "React Query", level: "expert", experience: "3년+" },
+      { name: "Redux Toolkit", level: "expert", experience: "3년+" },
+      { name: "Zustand", level: "proficient", experience: "2년" },
+      { name: "Recoil", level: "proficient", experience: "1년" },
     ],
   },
   {
-    category: "DevOps & Tools",
-    description: "Deploying and maintaining applications efficiently",
+    category: "Styling",
+    icon: "🎨",
     skills: [
-      { name: "Git", level: 90 },
-      { name: "Docker", level: 80 },
-      { name: "CI/CD", level: 75 },
-      { name: "AWS", level: 70 },
-      { name: "Vercel", level: 85 },
-      { name: "Linux", level: 75 },
+      { name: "styled-components", level: "expert", experience: "3년+" },
+      { name: "Tailwind CSS", level: "proficient", experience: "1년" },
+      { name: "SCSS", level: "familiar", experience: "1년" },
     ],
   },
   {
-    category: "AI & Machine Learning",
-    description: "Integrating AI capabilities into applications",
+    category: "Mobile",
+    icon: "📱",
+    skills: [{ name: "React Native", level: "proficient", experience: "1년+" }],
+  },
+  {
+    category: "Backend",
+    icon: "⚙️",
     skills: [
-      { name: "OpenAI API", level: 85 },
-      { name: "LangChain", level: 80 },
-      { name: "Vector Databases", level: 75 },
-      { name: "RAG Systems", level: 75 },
-      { name: "Prompt Engineering", level: 85 },
+      { name: "Node.js", level: "proficient", experience: "2년" },
+      { name: "Express", level: "proficient", experience: "2년" },
+    ],
+  },
+  {
+    category: "Database",
+    icon: "🗄️",
+    skills: [
+      { name: "MariaDB", level: "proficient", experience: "2년" },
+      { name: "PostgreSQL", level: "proficient", experience: "1년" },
+    ],
+  },
+  {
+    category: "Infra / DevOps",
+    icon: "🏗️",
+    skills: [
+      { name: "AWS EC2", level: "proficient", experience: "2년" },
+      { name: "AWS S3", level: "proficient", experience: "2년" },
+      { name: "AWS CloudFront", level: "proficient", experience: "2년" },
+      { name: "Nginx", level: "proficient", experience: "2년" },
+      { name: "PM2", level: "proficient", experience: "2년" },
+      { name: "Docker", level: "familiar", experience: "6개월" },
+    ],
+  },
+  {
+    category: "AI / ML",
+    icon: "🤖",
+    skills: [
+      { name: "RAG", level: "proficient", experience: "1년" },
+      { name: "ChromaDB", level: "familiar", experience: "6개월" },
     ],
   },
 ];
 
+// 도구 목록
 export const tools = [
   "VS Code",
+  "Cursor",
   "Figma",
   "Postman",
   "GitHub",
-  "Jira",
+  "Discord",
   "Notion",
   "Slack",
-  "ChatGPT",
+  "DBeaver",
+  "GPT codex",
 ];
