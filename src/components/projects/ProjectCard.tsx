@@ -5,6 +5,7 @@ import SpotlightCard from "../animations/SpotlightCard";
 import Image from "next/image";
 import DefaultThumbnail from "./DefaultThumbnail";
 import { Calendar } from "lucide-react";
+import { getAssetPath } from "@/lib/utils/path";
 
 interface ProjectCardProps {
   project: Project;
@@ -45,7 +46,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
         <div className="aspect-video bg-surface relative overflow-hidden">
           {project.thumbnail ? (
             <Image
-              src={project.thumbnail}
+              src={getAssetPath(project.thumbnail)}
               alt={project.title}
               fill
               className="object-cover"

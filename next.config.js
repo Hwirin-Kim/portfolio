@@ -12,6 +12,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // 클라이언트에서 basePath 접근 가능하도록 환경 변수 노출
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
 };
 
 module.exports = nextConfig;

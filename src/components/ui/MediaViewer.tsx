@@ -4,6 +4,7 @@ import { MediaItem } from "@/types";
 import { useState, useRef } from "react";
 import { Play, Pause } from "lucide-react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import { getAssetPath } from "@/lib/utils/path";
 
 interface MediaViewerProps {
   media: MediaItem[];
@@ -88,7 +89,7 @@ export default function MediaViewer({
             ref={(el) => {
               videoRefs.current[currentIndex] = el;
             }}
-            src={currentMedia.url}
+            src={getAssetPath(currentMedia.url)}
             className="max-w-full max-h-full object-contain"
             loop
             playsInline
@@ -120,7 +121,7 @@ export default function MediaViewer({
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={currentMedia.url}
+                src={getAssetPath(currentMedia.url)}
                 alt={currentMedia.caption || `미디어 ${currentIndex + 1}`}
                 className="max-w-full max-h-full object-contain"
                 loading="lazy"
@@ -185,7 +186,7 @@ export default function MediaViewer({
               ) : (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={item.url}
+                  src={getAssetPath(item.url)}
                   alt={`썸네일 ${index + 1}`}
                   className="w-full h-auto"
                   loading="lazy"
