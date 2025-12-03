@@ -272,16 +272,22 @@ export const skillCategories: SkillCategory[] = [
   },
 ];
 
+// 도구 인터페이스
+export interface Tool {
+  name: string;
+  icon: string;
+}
+
 // 도구 목록
-export const tools = [
-  "VS Code",
-  "Cursor",
-  "Figma",
-  "Postman",
-  "GitHub",
-  "Discord",
-  "Notion",
-  "Slack",
-  "DBeaver",
-  "GPT codex",
+export const tools: Tool[] = [
+  { name: "VS Code", icon: "/icon/vscode.webp" },
+  { name: "Cursor", icon: "/icon/cursor.webp" },
+  { name: "GitHub", icon: "/icon/github.webp" },
+  { name: "Notion", icon: "/icon/notion.webp" },
+  { name: "GPT codex", icon: "/icon/gpt.webp" },
+  { name: "Figma", icon: "/icon/figma.webp" },
+  { name: "DBeaver", icon: "/icon/dbeaver.webp" },
+  { name: "Postman", icon: "/icon/postman.webp" },
+  { name: "Slack", icon: "/icon/slack.webp" },
+  { name: "Discord", icon: "/icon/discord.webp" },
 ];
