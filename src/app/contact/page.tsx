@@ -1,40 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, MessageCircle } from "lucide-react";
+import { Mail } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import MagneticButton from "@/components/animations/MagneticButton";
-
-const contactMethods = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "kimhuirin@gmail.com",
-    href: "mailto:kimhuirin@gmail.com",
-    color: "from-blue-500 to-blue-600",
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    value: "@Hwirin-Kim",
-    href: "https://github.com/Hwirin-Kim",
-    color: "from-gray-500 to-gray-600",
-  },
-  // {
-  //   icon: Linkedin,
-  //   label: "LinkedIn",
-  //   value: "Your Name",
-  //   href: "https://linkedin.com",
-  //   color: "from-blue-600 to-blue-700",
-  // },
-  // {
-  //   icon: MessageCircle,
-  //   label: "Discord",
-  //   value: "username#0000",
-  //   href: "#",
-  //   color: "from-indigo-500 to-indigo-600",
-  // },
-];
+import { contactMethods, faqs, primaryEmail } from "@/lib/data/contact";
 
 export default function ContactPage() {
   return (
@@ -118,7 +88,7 @@ export default function ContactPage() {
                 </p>
                 <MagneticButton strength={0.5}>
                   <a
-                    href="mailto:your@email.com"
+                    href={`mailto:${primaryEmail}`}
                     className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-black font-bold rounded-lg hover:bg-primary-light transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] text-lg"
                   >
                     <Mail className="w-5 h-5" />
@@ -141,24 +111,7 @@ export default function ContactPage() {
               </h2>
 
               <div className="space-y-6">
-                {[
-                  {
-                    q: "프로젝트 의뢰가 가능한가요?",
-                    a: "네, 가능합니다! 프로젝트 규모와 요구사항에 따라 협의 가능합니다.",
-                  },
-                  {
-                    q: "응답까지 얼마나 걸리나요?",
-                    a: "일반적으로 24-48시간 이내에 답변드립니다.",
-                  },
-                  {
-                    q: "원격 근무가 가능한가요?",
-                    a: "네, 원격 근무 및 하이브리드 모두 가능합니다.",
-                  },
-                  {
-                    q: "어떤 프로젝트를 선호하시나요?",
-                    a: "사용자 경험과 성능 최적화가 중요한 웹 애플리케이션 프로젝트를 선호합니다.",
-                  },
-                ].map((faq, index) => (
+                {faqs.map((faq, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
