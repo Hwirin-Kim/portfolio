@@ -1,150 +1,81 @@
-# Portfolio Website
+# 김휘린 포트폴리오
 
-고급 인터랙션과 애니메이션이 특징인 개발자 포트폴리오 웹사이트입니다.
+개인 포트폴리오 웹사이트입니다.
+
+## 🔗 배포 링크
+
+**[https://hwirin-kim.github.io/portfolio/](https://hwirin-kim.github.io/portfolio/)**
 
 ## 🚀 기술 스택
 
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Animation**: Framer Motion
-- **Icons**: Lucide React
-- **Deployment**: Static Export 지원
+| 분류           | 기술                         |
+| -------------- | ---------------------------- |
+| **Framework**  | Next.js 15 (App Router)      |
+| **Language**   | TypeScript                   |
+| **Styling**    | Tailwind CSS                 |
+| **Animation**  | Framer Motion                |
+| **Icons**      | Lucide React                 |
+| **Deployment** | GitHub Pages (Static Export) |
 
-## ✨ 주요 기능
-
-### 페이지
-- **Landing**: Hero 섹션, 타이핑 효과, 배경 글로우 애니메이션
-- **About**: 스크롤텔링 스타일의 자기소개, 철학, 성장 타임라인
-- **Projects**: 프로젝트 쇼케이스, 모달, Technical Insight
-- **Skills**: 기술 스택 시각화, 스킬 바 애니메이션
-- **Contact**: 연락처 정보, FAQ
-
-### 애니메이션
-- Scroll Reveal
-- Text Reveal (단어별 fade-up)
-- Typewriter Effect
-- Magnetic Button
-- Tilt Card Effect
-- Modal Transitions
-- Progress Bar Animations
-
-### 컴포넌트
-- 재사용 가능한 애니메이션 컴포넌트
-- 반응형 네비게이션
-- 프로젝트 모달 시스템
-- **미디어 뷰어 (이미지/동영상/GIF 지원)** ⭐ NEW!
-- AI 챗봇 플로팅 UI (추후 LLM 연동 가능)
-
-## 🎨 디자인 시스템
-
-### 컬러 팔레트
-- Background: #0F0F0F
-- Surface: #121212
-- Card: #161616
-- Border: #1F1F1F
-- Primary: #22C55E (Green)
-- Primary Light: #4ADE80
-
-### 애니메이션 원칙
-- Duration: 250ms ~ 400ms
-- Easing: cubic-bezier(0.33, 1, 0.68, 1)
-- GPU 가속 사용 (transform, opacity)
-- Scroll-based animations
-
-## 🛠 개발 시작하기
-
-### 설치
-```bash
-npm install
-```
-
-### 개발 서버 실행
-```bash
-npm run dev
-```
-
-브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 확인하세요.
-
-### 빌드
-```bash
-npm run build
-```
-
-### 정적 배포용 빌드
-```bash
-npm run build
-```
-
-## 📁 프로젝트 구조
+## 📁 프로젝트 아키텍처
 
 ```
 src/
-├── app/                    # 페이지 라우트
-│   ├── (landing)/         # 메인 페이지
-│   ├── about/             # About 페이지
-│   ├── projects/          # Projects 페이지
-│   ├── skills/            # Skills 페이지
-│   └── contact/           # Contact 페이지
-├── components/
-│   ├── layout/            # Header, Footer
-│   ├── animations/        # 재사용 애니메이션 컴포넌트
-│   ├── landing/           # 랜딩 페이지 컴포넌트
-│   ├── about/             # About 페이지 컴포넌트
-│   ├── projects/          # Projects 페이지 컴포넌트
-│   ├── skills/            # Skills 페이지 컴포넌트
-│   └── chatbot/           # 챗봇 컴포넌트
+├── app/                      # 페이지 라우트 (App Router)
+│   ├── page.tsx              # 랜딩 페이지
+│   ├── about/                # About 페이지
+│   ├── projects/             # Projects 페이지
+│   ├── skills/               # Skills 페이지
+│   └── contact/              # Contact 페이지
+│
+├── components/               # 재사용 가능한 컴포넌트
+│   ├── layout/               # Header, Footer, ScrollReset
+│   ├── animations/           # 애니메이션 컴포넌트
+│   │   ├── ScrollReveal      # 스크롤 기반 등장 애니메이션
+│   │   ├── MagneticButton    # 마그네틱 효과 버튼
+│   │   ├── SpotlightCard     # 스포트라이트 카드 효과
+│   │   ├── TiltCard          # 3D 틸트 효과
+│   │   └── TypewriterEffect  # 타이핑 효과
+│   ├── projects/             # 프로젝트 관련 컴포넌트
+│   ├── skills/               # 스킬 관련 컴포넌트
+│   ├── about/                # About 관련 컴포넌트
+│   ├── contact/              # Contact 관련 컴포넌트
+│   ├── common/               # 공통 컴포넌트 (CTASection 등)
+│   ├── ui/                   # UI 컴포넌트 (MediaViewer, Accordion 등)
+│   └── chatbot/              # AI 챗봇 컴포넌트
+│
 ├── lib/
-│   ├── animations/        # 애니메이션 variants, hooks
-│   ├── data/              # 프로젝트, 스킬 데이터
-│   └── utils/             # 유틸리티 함수
-├── styles/                # 글로벌 CSS
-└── types/                 # TypeScript 타입 정의
+│   ├── animations/           # 애니메이션 variants, hooks
+│   ├── data/                 # 정적 데이터
+│   │   ├── projects/         # 프로젝트 데이터
+│   │   ├── about.ts          # About 페이지 데이터
+│   │   ├── skills.ts         # 스킬 데이터
+│   │   └── contact.ts        # 연락처 데이터
+│   └── utils/                # 유틸리티 함수
+│       ├── cn.ts             # 클래스명 병합
+│       └── path.ts           # 정적 에셋 경로 처리
+│
+├── styles/
+│   └── globals.css           # 글로벌 CSS + 색상 토큰
+│
+└── types/
+    └── index.ts              # TypeScript 타입 정의
 ```
 
-## 🎯 커스터마이징
+### 페이지별 특징
 
-### 개인 정보 수정
-1. `src/components/landing/HeroSection.tsx` - 이름, 역할 수정
-2. `src/lib/data/about.ts` - About 페이지 내용 수정
-3. `src/lib/data/projects/` - 프로젝트 정보 추가/수정
-4. `src/lib/data/skills.ts` - 스킬 정보 수정
-5. `src/app/contact/page.tsx` - 연락처 정보 수정
-
-### 테마 색상 변경
-`tailwind.config.ts` 파일에서 색상 커스터마이징 가능
-
-### 콘텐츠 추가 가이드
-- **프로젝트 추가**: `docs/how-to-add-project.md`
-- **이미지 추가**: `docs/how-to-add-images.md`
-- **동영상/GIF 추가**: `docs/how-to-add-videos.md` ⭐ NEW!
-  - Animated WebP (권장) - GIF 대비 70-90% 작은 용량
-  - 최적화된 GIF
-  - MP4 동영상 (lazy loading 지원)
-- **빠른 시작**: `docs/video-quick-start.md`
-
-## ✅ 최근 업데이트
-
-- [x] **미디어 뷰어 추가** (2024-12-03)
-  - Animated WebP, GIF, MP4 동영상 지원
-  - Lazy loading으로 성능 최적화
-  - 동영상 재생 컨트롤
-  - 포스터 이미지 지원
-
-## 📝 추후 구현 예정
-
-- [ ] AI 챗봇 LLM 연동 (Groq/Gemini)
-- [ ] MDX 블로그 섹션
-- [ ] 다크/라이트 모드 토글
-- [ ] 다국어 지원
-- [ ] 성능 최적화 추가
-
-## 📄 라이선스
-
-MIT
+| 페이지       | 설명                                             |
+| ------------ | ------------------------------------------------ |
+| **Home**     | Hero 섹션, 타이핑 효과, 배경 글로우 애니메이션   |
+| **About**    | 스크롤텔링 스타일, 개발 철학, 경력/교육 타임라인 |
+| **Projects** | 프로젝트 카드, 상세 모달, 담당 업무/성과 표시    |
+| **Skills**   | 기술 스택 시각화, 레벨 가이드, 도구 그리드       |
+| **Contact**  | 연락처 카드, FAQ 섹션                            |
 
 ## 👤 Author
 
-Your Name - [GitHub](https://github.com) - [Email](mailto:your@email.com)
+**김휘린**
 
-# portfolio
+- GitHub: [@Hwirin-Kim](https://github.com/Hwirin-Kim)
+- Email: [kimhuirin@gmail.com](mailto:kimhuirin@gmail.com)
+- Blog: [huirin.tistory.com](https://huirin.tistory.com/)
