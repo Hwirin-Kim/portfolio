@@ -79,74 +79,61 @@ export default function MediaViewer({
   };
 
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-4 max-w-[900px] mx-auto ${className}`}>
       {/* 메인 미디어 */}
-      <div className="relative rounded-xl overflow-hidden bg-card aspect-video group">
-        <AnimatePresence initial={false} custom={direction} mode="popLayout">
-          <motion.div
-            key={page}
-            custom={direction}
-            initial={{ x: direction > 0 ? 1000 : -1000, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: direction < 0 ? 1000 : -1000, opacity: 0 }}
-            transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 },
-            }}
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={1}
-            onDragEnd={handleDragEnd}
-            className="absolute inset-0 cursor-grab active:cursor-grabbing"
-          >
-            {mediaType === "video" ? (
-              <>
-                <video
-                  ref={(el) => {
-                    videoRefs.current[currentIndex] = el;
-                  }}
-                  src={currentMedia.url}
-                  poster={currentMedia.poster}
-                  className="w-full h-full object-contain pointer-events-none"
-                  loop
-                  playsInline
-                  preload="metadata"
-                  onPlay={() =>
-                    setIsPlaying({ ...isPlaying, [currentIndex]: true })
-                  }
-                  onPause={() =>
-                    setIsPlaying({ ...isPlaying, [currentIndex]: false })
-                  }
-                >
-                  <source src={currentMedia.url} type="video/mp4" />
-                </video>
-
-                {/* 재생 버튼 오버레이 */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    togglePlayPause(currentIndex);
-                  }}
-                  className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-auto z-10"
-                >
-                  {isPlaying[currentIndex] ? (
-                    <Pause className="w-16 h-16 text-white/90" />
-                  ) : (
-                    <Play className="w-16 h-16 text-white/90" />
-                  )}
-                </button>
-              </>
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
+      <div className="relative rounded-xl overflow-hidden bg-black group">
+        {mediaType === "video" ? (
+          // 비디오: 애니메이션 없이 단순하게 표시
+          <div className="relative">
+            <video
+              ref={(el) => {
+                videoRefs.current[currentIndex] = el;
+              }}
+              src={currentMedia.url}
+              className="w-full"
+              style={{ maxHeight: "600px" }}
+              loop
+              playsInline
+              preload="auto"
+              controls
+              onPlay={() =>
+                setIsPlaying({ ...isPlaying, [currentIndex]: true })
+              }
+              onPause={() =>
+                setIsPlaying({ ...isPlaying, [currentIndex]: false })
+              }
+            />
+          </div>
+        ) : (
+          // 이미지: 기존 애니메이션 유지
+          <AnimatePresence initial={false} custom={direction} mode="popLayout">
+            <motion.div
+              key={page}
+              custom={direction}
+              initial={{ x: direction > 0 ? 1000 : -1000, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: direction < 0 ? 1000 : -1000, opacity: 0 }}
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={handleDragEnd}
+              className="cursor-grab active:cursor-grabbing"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={currentMedia.url}
                 alt={currentMedia.caption || `미디어 ${currentIndex + 1}`}
-                className="w-full h-full object-contain pointer-events-none"
+                className="w-full object-contain"
+                style={{ maxHeight: "600px" }}
                 loading="lazy"
               />
-            )}
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+        )}
 
         {/* 이전/다음 버튼 */}
         {media.length > 1 && (

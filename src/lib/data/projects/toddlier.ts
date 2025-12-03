@@ -82,6 +82,14 @@ export const toddlierData: ShowcaseProject = {
           description: `
   - 책 넘김 기반의 화면 구성, 챕터 이동, 페이지 이동, 책 진행률 표시를 설계
   - 텍스트, 이미지, TTS, 퀴즈, 단어장 기능이 한 화면에서 자연스럽게 동작하도록 인터랙션을 설계`.trim(),
+          media: [
+            {
+              url: "/projects/toddlier/video/toddlier_bookflip.mp4",
+              type: "video",
+              caption: "책 넘김 기능 시연",
+              poster: book2,
+            },
+          ],
         },
       },
       {

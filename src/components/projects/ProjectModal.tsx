@@ -258,10 +258,7 @@ export default function ProjectModal({
                 <div className="space-y-6">
                   {/* 미디어 뷰어 (새로운 방식 - 동영상/GIF 지원) */}
                   {project.overview.media && project.overview.media.length > 0 && (
-                    <MediaViewer
-                      media={project.overview.media}
-                      className="max-w-2xl mx-auto"
-                    />
+                    <MediaViewer media={project.overview.media} />
                   )}
 
                   {/* 이미지 캐러셀 (기존 방식 - 하위 호환성) */}
