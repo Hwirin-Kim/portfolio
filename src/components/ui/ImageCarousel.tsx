@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import { getAssetPath } from "@/lib/utils/path";
 
 interface ImageCarouselProps {
   images: string[];
@@ -62,7 +63,7 @@ export default function ImageCarousel({ images, className }: ImageCarouselProps)
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={images[currentIndex]}
+              src={getAssetPath(images[currentIndex])}
               alt={`Slide ${currentIndex + 1}`}
               className="max-w-full max-h-full object-contain pointer-events-none"
             />

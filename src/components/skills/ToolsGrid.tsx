@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Tool } from "@/lib/data/skills";
+import { getAssetPath } from "@/lib/utils/path";
 
 interface ToolsGridProps {
   tools: Tool[];
@@ -28,7 +29,7 @@ export default function ToolsGrid({ tools }: ToolsGridProps) {
         >
           <div className="w-12 h-12 mx-auto mb-3 rounded-xl overflow-hidden bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
             <Image
-              src={tool.icon}
+              src={getAssetPath(tool.icon)}
               alt={tool.name}
               width={40}
               height={40}
