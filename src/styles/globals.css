@@ -14,6 +14,36 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* 스크롤바 스타일 - Webkit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0F0F0F;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #22C55E40;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #22C55E80;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: #0F0F0F;
+  }
+
+  /* 스크롤바 스타일 - Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #22C55E40 #0F0F0F;
+  }
 }
 
 @layer utilities {
