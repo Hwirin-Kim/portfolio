@@ -3,7 +3,7 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 
 export default function Home() {
   return (
-    <main className="pt-16">
+    <main className="relative pt-16">
       <HeroSection />
 
       {/* Preview Section */}

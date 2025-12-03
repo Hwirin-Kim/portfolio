@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 export default function AboutPage() {
   return (
-    <main className="pt-16">
+    <main className="relative pt-16">
       {/* Hero */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-surface to-background" />
