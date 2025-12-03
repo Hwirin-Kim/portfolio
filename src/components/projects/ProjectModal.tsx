@@ -36,6 +36,7 @@ export default function ProjectModal({
     if (project) {
       setActiveTab("overview");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [project?.id]);
 
   // 모달이 열리면 뒷 배경 스크롤 막기
