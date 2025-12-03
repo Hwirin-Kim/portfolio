@@ -25,8 +25,9 @@ jobs:
         run: npm install
 
       - name: Build and Export
-        run: |
-          npm run build
+        run: npm run build
+        env:
+          DEPLOY_TARGET: github-pages
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

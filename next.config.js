@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-// GitHub Actions 배포 시에만 basePath 적용
-const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+// GitHub Pages 배포 시에만 basePath 적용
+const isGitHubPages = process.env.DEPLOY_TARGET === "github-pages";
 const basePath = isGitHubPages ? "/portfolio" : "";
+
+console.log("Building with basePath:", basePath);
 
 const nextConfig = {
   reactStrictMode: true,
