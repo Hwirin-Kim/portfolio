@@ -21,7 +21,7 @@ export const toddlierData: ShowcaseProject = {
   type: "showcase",
   category: "신규개발",
   id: "toddlier",
-  title: "어린이 영어도서관",
+  title: "토들리에",
   thumbnail: main,
   shortDescription:
     "TTS, 퀴즈, 단어장, 녹음 기능이 결합된 인터랙티브 영어 학습 플랫폼",

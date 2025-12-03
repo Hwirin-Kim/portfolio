@@ -3,6 +3,7 @@
 import { Project, ProjectCategory } from "@/types";
 import SpotlightCard from "../animations/SpotlightCard";
 import Image from "next/image";
+import DefaultThumbnail from "./DefaultThumbnail";
 
 interface ProjectCardProps {
   project: Project;
@@ -36,13 +37,17 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
       >
         {/* Image */}
         <div className="aspect-video bg-surface relative overflow-hidden">
-          <Image
-            src={project.thumbnail}
-            alt={project.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+          {project.thumbnail ? (
+            <Image
+              src={project.thumbnail}
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          ) : (
+            <DefaultThumbnail title={project.title} />
+          )}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-light/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
 
           {/* 카테고리 뱃지 */}

@@ -1,8 +1,10 @@
 import { Project } from "@/types";
 import { toddlierData } from "./toddlier";
+import { dkData } from "./dk";
 
 export const projects: Project[] = [
   toddlierData,
+  dkData,
 
   {
     type: "showcase",
