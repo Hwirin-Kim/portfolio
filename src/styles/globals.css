@@ -2,11 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   🎨 Color Tokens (Design System)
+   ============================================ */
+:root {
+  /* Background Colors */
+  --color-background: #0f0f0f;
+  --color-surface: #121212;
+  --color-card: #161616;
+
+  /* Border */
+  --color-border: #1f1f1f;
+
+  /* Primary (Green) */
+  --color-primary: #22c55e;
+  --color-primary-light: #4ade80;
+  --color-primary-dark: #16a34a;
+
+  /* Glow Effect */
+  --color-glow: rgba(34, 197, 94, 0.4);
+  --color-glow-strong: rgba(34, 197, 94, 0.6);
+
+  /* Text */
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-text-subtle: rgba(255, 255, 255, 0.5);
+
+  /* Status Colors */
+  --color-error: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-info: #3b82f6;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
-  
+
   body {
     @apply bg-background text-white;
   }
@@ -22,27 +55,28 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #0F0F0F;
+    background: var(--color-background);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #22C55E40;
+    background: color-mix(in srgb, var(--color-primary) 25%, transparent);
     border-radius: 4px;
     transition: background 0.2s;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #22C55E80;
+    background: color-mix(in srgb, var(--color-primary) 50%, transparent);
   }
 
   ::-webkit-scrollbar-corner {
-    background: #0F0F0F;
+    background: var(--color-background);
   }
 
   /* 스크롤바 스타일 - Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #22C55E40 #0F0F0F;
+    scrollbar-color: color-mix(in srgb, var(--color-primary) 25%, transparent)
+      var(--color-background);
   }
 }
 
@@ -61,7 +95,8 @@
   }
 
   @keyframes pulse-slow {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 0.3;
     }
     50% {
@@ -77,4 +112,3 @@
     animation: pulse-slow 3s ease-in-out infinite;
   }
 }
-
