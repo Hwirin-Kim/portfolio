@@ -44,7 +44,6 @@ export const iltalData: ShowcaseProject = {
     ],
     techStack: [
       "React",
-      "React",
       "TypeScript",
       "React Query",
       "Recoil",
@@ -105,6 +104,13 @@ export const iltalData: ShowcaseProject = {
               caption: "댓글 기능",
             },
           ],
+        },
+      },
+      {
+        title: "카카오 지도 API 연동",
+        details: {
+          description: `
+  - 카카오 지도 API를 통해 업체의 위치를 확인할 수 있도록 구현`.trim(),
         },
       },
     ],
