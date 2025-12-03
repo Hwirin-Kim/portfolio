@@ -1,7 +1,7 @@
 // ============================================
 // 프로젝트 타입 구분
 // ============================================
-export type ProjectType = "showcase" | "case-study";
+export type ProjectType = "showcase" | "refactor" | "migration";
 
 // 프로젝트 카테고리 (태그)
 export type ProjectCategory =
@@ -92,11 +92,9 @@ export interface ShowcaseProject extends BaseProject {
 }
 
 // ============================================
-// Case Study 프로젝트 (특정 문제 해결)
+// Refactor / Migration 프로젝트 공통 구조
 // ============================================
-export interface CaseStudyProject extends BaseProject {
-  type: "case-study";
-
+interface ChallengeProjectBase extends BaseProject {
   // 프로젝트 컨텍스트
   context: {
     company: string; // "주식회사 레어리"
@@ -104,24 +102,27 @@ export interface CaseStudyProject extends BaseProject {
     role: string; // "Frontend Developer"
   };
 
-  // 해결한 문제 (메인 콘텐츠)
-  challenge: {
-    title: string; // "토스페이먼츠 → KG이니시스 결제 시스템 마이그레이션"
-    background: string; // 왜 이 작업이 필요했는지
-    problem: string; // 구체적인 문제/요구사항
-    solution: string; // 어떻게 해결했는지
-    result: string; // 결과 및 효과
-    techStack: string[]; // 사용한 기술
-    metrics?: {
-      // 수치화 가능한 성과
-      before: string;
-      after: string;
-      label: string;
-    };
-  };
+  // 기술 스택
+  techStack: string[];
+
+  // 프로젝트 미디어 (선택 - 이미지/동영상 캐러셀용)
+  media?: MediaItem[];
+
+  // 내 기여 & 성과 (Showcase와 동일한 구조)
+  myContribution: MyContribution;
+}
+
+// Refactor 프로젝트 (코드 리팩토링, 구조 개선)
+export interface RefactorProject extends ChallengeProjectBase {
+  type: "refactor";
+}
+
+// Migration 프로젝트 (기술 스택 전환, 시스템 마이그레이션)
+export interface MigrationProject extends ChallengeProjectBase {
+  type: "migration";
 }
 
 // ============================================
 // 통합 프로젝트 타입
 // ============================================
-export type Project = ShowcaseProject | CaseStudyProject;
+export type Project = ShowcaseProject | RefactorProject | MigrationProject;

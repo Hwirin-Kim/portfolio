@@ -4,6 +4,7 @@ import { Project, ProjectCategory } from "@/types";
 import SpotlightCard from "../animations/SpotlightCard";
 import Image from "next/image";
 import DefaultThumbnail from "./DefaultThumbnail";
+import { Calendar } from "lucide-react";
 
 interface ProjectCardProps {
   project: Project;
@@ -21,11 +22,16 @@ const categoryStyles: Record<ProjectCategory, { bg: string; text: string }> = {
 };
 
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
-  // 타입에 따라 기술 스택 가져오기
+  // 타입에 따라 기술 스택과 기간 가져오기
   const techStack =
     project.type === "showcase"
       ? project.overview.techStack
-      : project.challenge.techStack;
+      : project.techStack;
+
+  const period =
+    project.type === "showcase"
+      ? project.overview.period
+      : project.context.period;
 
   const categoryStyle = categoryStyles[project.category];
 
@@ -51,17 +57,12 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-light/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
 
           {/* 카테고리 뱃지 */}
-          <div className="absolute top-3 left-3 flex gap-2">
+          <div className="absolute top-3 left-3">
             <span
               className={`px-3 py-1 ${categoryStyle.bg} ${categoryStyle.text} text-xs font-bold rounded-full`}
             >
               {project.category}
             </span>
-            {project.type === "case-study" && (
-              <span className="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-full border border-white/30">
-                Case Study
-              </span>
-            )}
           </div>
         </div>
 
@@ -70,15 +71,22 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
             {project.title}
           </h3>
+
+          {/* 기간 */}
+          <div className="flex items-center gap-1.5 text-white/50 text-xs mb-3">
+            <Calendar className="w-3.5 h-3.5" />
+            <span>{period}</span>
+          </div>
+
           <p className="text-white/60 mb-4 line-clamp-2">
             {project.shortDescription}
           </p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2">
-            {techStack.slice(0, 3).map((tag) => (
+            {techStack.slice(0, 3).map((tag, index) => (
               <span
-                key={tag}
+                key={`${tag}-${index}`}
                 className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full border border-primary/30"
               >
                 {tag}

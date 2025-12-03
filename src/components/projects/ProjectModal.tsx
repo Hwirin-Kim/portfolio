@@ -11,7 +11,7 @@ import {
   Building2,
 } from "lucide-react";
 import { modalBackdrop, modalContent } from "@/lib/animations/variants";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageCarousel from "@/components/ui/ImageCarousel";
 import MediaViewer from "@/components/ui/MediaViewer";
 import ProjectModalContribution from "@/components/projects/ProjectModalContribution";
@@ -31,10 +31,47 @@ export default function ProjectModal({
     "overview"
   );
 
+  // 프로젝트가 바뀌면 탭을 "프로젝트 소개"로 리셋
+  useEffect(() => {
+    if (project) {
+      setActiveTab("overview");
+    }
+  }, [project?.id]);
+
+  // 모달이 열리면 뒷 배경 스크롤 막기
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!project) return null;
 
-  // Case Study 타입인 경우 별도 렌더링
-  if (project.type === "case-study") {
+  // 타입별 뱃지 스타일
+  const typeBadgeConfig = {
+    refactor: {
+      label: "Refactor",
+      bg: "bg-purple-500/20",
+      text: "text-purple-400",
+      border: "border-purple-500/30",
+    },
+    migration: {
+      label: "Migration",
+      bg: "bg-orange-500/20",
+      text: "text-orange-400",
+      border: "border-orange-500/30",
+    },
+  };
+
+  // Refactor / Migration 타입인 경우 별도 렌더링
+  if (project.type === "refactor" || project.type === "migration") {
+    const badge = typeBadgeConfig[project.type];
     return (
       <AnimatePresence mode="wait">
         {isOpen && (
@@ -59,8 +96,10 @@ export default function ProjectModal({
               <div className="flex items-center justify-between p-6 border-b border-border">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="px-3 py-1 bg-yellow-500/20 text-yellow-400 text-xs rounded-full border border-yellow-500/30">
-                      Case Study
+                    <span
+                      className={`px-3 py-1 ${badge.bg} ${badge.text} text-xs rounded-full border ${badge.border}`}
+                    >
+                      {badge.label}
                     </span>
                   </div>
                   <h2 className="text-3xl font-bold">{project.title}</h2>
@@ -76,6 +115,21 @@ export default function ProjectModal({
               {/* Content */}
               <div className="flex-1 overflow-y-auto p-6">
                 <div className="space-y-6">
+                  {/* 미디어 뷰어 (새로운 방식 - 동영상/GIF 지원) */}
+                  {project.media && project.media.length > 0 && (
+                    <MediaViewer media={project.media} className="mx-auto" />
+                  )}
+
+                  {/* 이미지 캐러셀 (기존 방식 - 하위 호환성) */}
+                  {!project.media &&
+                    project.images &&
+                    project.images.length > 0 && (
+                      <ImageCarousel
+                        images={project.images}
+                        className="mx-auto"
+                      />
+                    )}
+
                   {/* Context */}
                   <div className="flex flex-wrap gap-4 text-sm">
                     <div className="flex items-center gap-2 px-4 py-2 bg-card rounded-lg">
@@ -95,76 +149,13 @@ export default function ProjectModal({
                     </div>
                   </div>
 
-                  {/* Challenge Title */}
-                  <div className="bg-gradient-to-r from-primary/10 to-primary-light/10 p-6 rounded-xl border border-primary/30">
-                    <h3 className="text-2xl font-bold text-primary mb-2">
-                      {project.challenge.title}
-                    </h3>
-                  </div>
-
-                  {/* Background */}
+                  {/* 기술 스택 */}
                   <div>
-                    <h4 className="text-lg font-bold mb-3">배경</h4>
-                    <p className="text-white/70 whitespace-pre-line leading-relaxed">
-                      {project.challenge.background}
-                    </p>
-                  </div>
-
-                  {/* Problem */}
-                  <div className="bg-red-500/10 p-6 rounded-xl border border-red-500/30">
-                    <h4 className="text-lg font-bold mb-3 text-red-400">
-                      문제 상황
-                    </h4>
-                    <p className="text-white/70 whitespace-pre-line leading-relaxed">
-                      {project.challenge.problem}
-                    </p>
-                  </div>
-
-                  {/* Solution */}
-                  <div className="bg-primary/10 p-6 rounded-xl border border-primary/30">
-                    <h4 className="text-lg font-bold mb-3 text-primary">
-                      해결 방법
-                    </h4>
-                    <p className="text-white/70 whitespace-pre-line leading-relaxed">
-                      {project.challenge.solution}
-                    </p>
-                  </div>
-
-                  {/* Result */}
-                  <div className="bg-gradient-to-br from-primary/20 to-primary-light/20 p-6 rounded-xl border border-primary">
-                    <h4 className="text-lg font-bold mb-3">결과 & 성과</h4>
-                    <p className="text-white/80 whitespace-pre-line leading-relaxed mb-4">
-                      {project.challenge.result}
-                    </p>
-
-                    {project.challenge.metrics && (
-                      <div className="grid grid-cols-2 gap-4 mt-4 p-4 bg-background/50 rounded-lg">
-                        <div className="text-center">
-                          <p className="text-white/50 text-sm mb-1">Before</p>
-                          <p className="text-2xl font-bold text-red-400">
-                            {project.challenge.metrics.before}
-                          </p>
-                        </div>
-                        <div className="text-center">
-                          <p className="text-white/50 text-sm mb-1">After</p>
-                          <p className="text-2xl font-bold text-primary">
-                            {project.challenge.metrics.after}
-                          </p>
-                        </div>
-                        <p className="col-span-2 text-center text-sm text-white/60">
-                          {project.challenge.metrics.label}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div>
-                    <h4 className="text-lg font-bold mb-3">사용 기술</h4>
+                    <h3 className="text-xl font-bold mb-3">기술 스택</h3>
                     <div className="flex flex-wrap gap-2">
-                      {project.challenge.techStack.map((tech) => (
+                      {project.techStack.map((tech, index) => (
                         <span
-                          key={tech}
+                          key={`${tech}-${index}`}
                           className="px-4 py-2 bg-primary/10 text-primary rounded-lg border border-primary/30"
                         >
                           {tech}
@@ -172,6 +163,9 @@ export default function ProjectModal({
                       ))}
                     </div>
                   </div>
+
+                  {/* 내 기여 & 성과 (Showcase와 동일한 UI) */}
+                  <ProjectModalContribution project={project} />
                 </div>
               </div>
             </motion.div>
@@ -257,9 +251,13 @@ export default function ProjectModal({
               {activeTab === "overview" ? (
                 <div className="space-y-6">
                   {/* 미디어 뷰어 (새로운 방식 - 동영상/GIF 지원) */}
-                  {project.overview.media && project.overview.media.length > 0 && (
-                    <MediaViewer media={project.overview.media} />
-                  )}
+                  {project.overview.media &&
+                    project.overview.media.length > 0 && (
+                      <MediaViewer
+                        media={project.overview.media}
+                        className="mx-auto"
+                      />
+                    )}
 
                   {/* 이미지 캐러셀 (기존 방식 - 하위 호환성) */}
                   {!project.overview.media &&
@@ -267,7 +265,7 @@ export default function ProjectModal({
                     project.overview.images.length > 0 && (
                       <ImageCarousel
                         images={project.overview.images}
-                        className="max-w-2xl"
+                        className="mx-auto"
                       />
                     )}
 

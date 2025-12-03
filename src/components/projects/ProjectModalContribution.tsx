@@ -1,13 +1,13 @@
 "use client";
 
-import { ShowcaseProject } from "@/types";
+import { Project } from "@/types";
 import { motion } from "framer-motion";
 import Accordion from "../ui/Accordion";
 import ImageCarousel from "../ui/ImageCarousel";
 import MediaViewer from "../ui/MediaViewer";
 
 interface ProjectModalContributionProps {
-  project: ShowcaseProject;
+  project: Project;
 }
 
 export default function ProjectModalContribution({

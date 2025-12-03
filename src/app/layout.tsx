@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import FloatingChat from "@/components/chatbot/FloatingChat";
+import ScrollReset from "@/components/layout/ScrollReset";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="dark">
       <body className={inter.className}>
+        <ScrollReset />
         <Header />
         {children}
         <Footer />

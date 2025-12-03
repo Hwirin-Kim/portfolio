@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import Image from "next/image";
 
 interface ImageCarouselProps {
   images: string[];
@@ -41,9 +40,9 @@ export default function ImageCarousel({ images, className }: ImageCarouselProps)
   if (images.length === 0) return null;
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative w-full ${className}`}>
       {/* 이미지 */}
-      <div className="relative aspect-video bg-surface rounded-lg overflow-hidden">
+      <div className="relative bg-surface rounded-lg overflow-hidden h-[60vh] flex items-center justify-center">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
             key={page}
@@ -59,14 +58,13 @@ export default function ImageCarousel({ images, className }: ImageCarouselProps)
             dragConstraints={{ left: 0, right: 0 }}
             dragElastic={1}
             onDragEnd={handleDragEnd}
-            className="absolute inset-0 cursor-grab active:cursor-grabbing"
+            className="cursor-grab active:cursor-grabbing h-full flex items-center justify-center"
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={images[currentIndex]}
               alt={`Slide ${currentIndex + 1}`}
-              fill
-              className="object-cover pointer-events-none"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+              className="max-w-full max-h-full object-contain pointer-events-none"
             />
           </motion.div>
         </AnimatePresence>

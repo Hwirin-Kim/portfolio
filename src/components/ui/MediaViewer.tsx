@@ -79,31 +79,26 @@ export default function MediaViewer({
   };
 
   return (
-    <div className={`space-y-4 max-w-[900px] mx-auto ${className}`}>
+    <div className={`space-y-4 w-full ${className}`}>
       {/* 메인 미디어 */}
-      <div className="relative rounded-xl overflow-hidden bg-black group">
+      <div className="relative rounded-xl overflow-hidden bg-black group h-[60vh] flex items-center justify-center">
         {mediaType === "video" ? (
           // 비디오: 애니메이션 없이 단순하게 표시
-          <div className="relative">
-            <video
-              ref={(el) => {
-                videoRefs.current[currentIndex] = el;
-              }}
-              src={currentMedia.url}
-              className="w-full"
-              style={{ maxHeight: "600px" }}
-              loop
-              playsInline
-              preload="auto"
-              controls
-              onPlay={() =>
-                setIsPlaying({ ...isPlaying, [currentIndex]: true })
-              }
-              onPause={() =>
-                setIsPlaying({ ...isPlaying, [currentIndex]: false })
-              }
-            />
-          </div>
+          <video
+            ref={(el) => {
+              videoRefs.current[currentIndex] = el;
+            }}
+            src={currentMedia.url}
+            className="max-w-full max-h-full object-contain"
+            loop
+            playsInline
+            preload="auto"
+            controls
+            onPlay={() => setIsPlaying({ ...isPlaying, [currentIndex]: true })}
+            onPause={() =>
+              setIsPlaying({ ...isPlaying, [currentIndex]: false })
+            }
+          />
         ) : (
           // 이미지: 기존 애니메이션 유지
           <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -121,14 +116,13 @@ export default function MediaViewer({
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={1}
               onDragEnd={handleDragEnd}
-              className="cursor-grab active:cursor-grabbing"
+              className="cursor-grab active:cursor-grabbing h-full flex items-center justify-center"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={currentMedia.url}
                 alt={currentMedia.caption || `미디어 ${currentIndex + 1}`}
-                className="w-full object-contain"
-                style={{ maxHeight: "600px" }}
+                className="max-w-full max-h-full object-contain"
                 loading="lazy"
               />
             </motion.div>
@@ -170,7 +164,7 @@ export default function MediaViewer({
 
       {/* 썸네일 네비게이션 */}
       {media.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-2">
+        <div className="flex gap-2 overflow-x-auto pb-2 items-start">
           {media.map((item, index) => (
             <button
               key={index}
@@ -178,14 +172,14 @@ export default function MediaViewer({
                 setCurrentIndex(index);
                 setPage([index, index > currentIndex ? 1 : -1]);
               }}
-              className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+              className={`flex-shrink-0 w-24 rounded-lg overflow-hidden border-2 transition-all ${
                 index === currentIndex
                   ? "border-primary scale-105"
                   : "border-white/20 hover:border-white/40"
               }`}
             >
               {getMediaType(item) === "video" ? (
-                <div className="w-full h-full bg-card flex items-center justify-center">
+                <div className="w-full aspect-video bg-card flex items-center justify-center">
                   <Play className="w-6 h-6 text-white/50" />
                 </div>
               ) : (
@@ -193,7 +187,7 @@ export default function MediaViewer({
                 <img
                   src={item.url}
                   alt={`썸네일 ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-auto"
                   loading="lazy"
                 />
               )}
