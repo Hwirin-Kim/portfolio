@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import MagneticButton from "@/components/animations/MagneticButton";
+import ContactCard from "@/components/contact/ContactCard";
+import FAQCard from "@/components/contact/FAQCard";
 import { contactMethods, faqs, primaryEmail } from "@/lib/data/contact";
 
 export default function ContactPage() {
@@ -31,7 +33,7 @@ export default function ContactPage() {
           <div className="max-w-4xl mx-auto">
             {/* Header */}
             <ScrollReveal>
-              <div className="text-center mb-16">
+              <div className="text-center mb-16 mt-16">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-primary to-white bg-clip-text text-transparent">
                   Let&apos;s Connect
                 </h1>
@@ -45,36 +47,9 @@ export default function ContactPage() {
 
             {/* Contact Methods */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-              {contactMethods.map((method, index) => {
-                const Icon = method.icon;
-                return (
-                  <motion.a
-                    key={method.label}
-                    href={method.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 + 0.3 }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border hover:border-primary transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.15)] group"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`w-14 h-14 rounded-xl bg-gradient-to-br ${method.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform`}
-                      >
-                        <Icon className="w-7 h-7 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">
-                          {method.label}
-                        </h3>
-                        <p className="text-white/60">{method.value}</p>
-                      </div>
-                    </div>
-                  </motion.a>
-                );
-              })}
+              {contactMethods.map((method, index) => (
+                <ContactCard key={method.label} method={method} index={index} />
+              ))}
             </div>
 
             {/* Quick Message */}
@@ -112,19 +87,7 @@ export default function ContactPage() {
 
               <div className="space-y-6">
                 {faqs.map((faq, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border"
-                  >
-                    <h3 className="text-xl font-bold mb-2 text-primary">
-                      {faq.q}
-                    </h3>
-                    <p className="text-white/70">{faq.a}</p>
-                  </motion.div>
+                  <FAQCard key={index} faq={faq} index={index} />
                 ))}
               </div>
             </div>

@@ -2,6 +2,9 @@
 
 import ScrollySection from "@/components/about/ScrollySection";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import PrincipleCard from "@/components/about/PrincipleCard";
+import ProcessCard from "@/components/about/ProcessCard";
+import TimelineCard from "@/components/about/TimelineCard";
 import { principles, workProcess, career, timeline } from "@/lib/data/about";
 import { motion } from "framer-motion";
 
@@ -32,15 +35,11 @@ export default function AboutPage() {
       <ScrollySection title="개발 철학" index={0}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {principles.map((principle, index) => (
-            <div
+            <PrincipleCard
               key={index}
-              className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border border-border hover:border-primary transition-all"
-            >
-              <h3 className="text-2xl font-bold mb-3 text-primary">
-                {principle.title}
-              </h3>
-              <p className="text-white/60">{principle.description}</p>
-            </div>
+              title={principle.title}
+              description={principle.description}
+            />
           ))}
         </div>
       </ScrollySection>
@@ -49,18 +48,12 @@ export default function AboutPage() {
       <ScrollySection title="개발 방법" index={1}>
         <div className="space-y-8">
           {workProcess.map((process, index) => (
-            <div
+            <ProcessCard
               key={index}
-              className="flex items-start gap-6 bg-card/30 backdrop-blur-sm p-6 rounded-xl border border-border"
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary font-bold">
-                {index + 1}
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold mb-2">{process.step}</h3>
-                <p className="text-white/60">{process.description}</p>
-              </div>
-            </div>
+              step={process.step}
+              description={process.description}
+              index={index}
+            />
           ))}
         </div>
       </ScrollySection>
@@ -71,27 +64,13 @@ export default function AboutPage() {
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
           <div className="space-y-12 pl-12">
             {career.map((item, index) => (
-              <div key={index} className="relative">
-                <div className="absolute -left-[51px] w-4 h-4 rounded-full bg-primary border-4 border-background" />
-                <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border border-border hover:border-primary transition-all">
-                  <span className="text-primary font-bold text-lg">
-                    {item.year}
-                  </span>
-                  <h3 className="text-2xl font-bold mt-2 mb-1">{item.title}</h3>
-                  <p className="text-primary-light text-lg mb-3">{item.role}</p>
-                  <ul className="space-y-2">
-                    {item.descriptions.map((description, idx) => (
-                      <li
-                        key={idx}
-                        className="text-white/60 flex items-start gap-2"
-                      >
-                        <span className="text-primary mt-1">•</span>
-                        <span>{description}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <TimelineCard
+                key={index}
+                year={item.year}
+                title={item.title}
+                role={item.role}
+                descriptions={item.descriptions}
+              />
             ))}
           </div>
         </div>
@@ -103,20 +82,12 @@ export default function AboutPage() {
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
           <div className="space-y-12 pl-12">
             {timeline.map((item, index) => (
-              <div key={index} className="relative">
-                <div className="absolute -left-[51px] w-4 h-4 rounded-full bg-primary border-4 border-background" />
-                <div className="bg-card/50 backdrop-blur-sm p-6 rounded-xl border border-border hover:border-primary transition-all">
-                  <span className="text-primary font-bold text-lg">
-                    {item.year}
-                  </span>
-                  <h3 className="text-2xl font-bold mt-2 mb-3">{item.title}</h3>
-                  {item.descriptions.map((description, index) => (
-                    <p key={index} className="text-white/60">
-                      {description}
-                    </p>
-                  ))}
-                </div>
-              </div>
+              <TimelineCard
+                key={index}
+                year={item.year}
+                title={item.title}
+                descriptions={item.descriptions}
+              />
             ))}
           </div>
         </div>

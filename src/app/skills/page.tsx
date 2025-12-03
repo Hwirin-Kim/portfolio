@@ -2,6 +2,7 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 import SkillLevelGuide from "@/components/skills/SkillLevelGuide";
 import SkillCategorySection from "@/components/skills/SkillCategorySection";
 import ToolsGrid from "@/components/skills/ToolsGrid";
+import CTASection from "@/components/common/CTASection";
 import { skillCategories, tools } from "@/lib/data/skills";
 
 export default function SkillsPage() {
@@ -66,24 +67,12 @@ export default function SkillsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16">
-        <ScrollReveal>
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              함께 일하고 싶으신가요?
-            </h2>
-            <p className="text-lg text-white/70 mb-8">
-              새로운 프로젝트에 대해 이야기해봐요
-            </p>
-            <a
-              href="/contact"
-              className="inline-block px-8 py-3 bg-primary text-black font-medium rounded-lg hover:bg-primary-light transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]"
-            >
-              Contact Me
-            </a>
-          </div>
-        </ScrollReveal>
-      </section>
+      <CTASection
+        title="함께 일하고 싶으신가요?"
+        description="새로운 프로젝트에 대해 이야기해봐요"
+        buttonText="Contact Me"
+        buttonHref="/contact"
+      />
     </main>
   );
 }

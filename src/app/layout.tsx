@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className="dark">
+    <html lang="ko" className="dark" data-scroll-behavior="smooth">
       <body className={inter.className}>
         <ScrollReset />
         <Header />

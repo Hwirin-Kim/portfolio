@@ -28,7 +28,7 @@ export default function ScrollySection({
     <motion.div
       ref={ref}
       style={{ opacity, scale, y }}
-      className="min-h-screen flex items-center justify-center"
+      className="relative min-h-screen flex items-center justify-center"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
