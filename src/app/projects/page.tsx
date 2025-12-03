@@ -24,7 +24,7 @@ export default function ProjectsPage() {
   };
 
   return (
-    <main className="pt-16">
+    <main className="relative pt-16">
       {/* Hero */}
       <section className="py-20 bg-gradient-to-b from-background to-surface">
         <div className="container mx-auto px-4">

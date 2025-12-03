@@ -10,7 +10,7 @@ import { contactMethods, faqs, primaryEmail } from "@/lib/data/contact";
 
 export default function ContactPage() {
   return (
-    <main className="pt-16">
+    <main className="relative pt-16">
       {/* Hero */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
         {/* Background Glow */}
