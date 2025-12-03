@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import ProjectCard from "@/components/projects/ProjectCard";
 import ProjectModal from "@/components/projects/ProjectModal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { projects } from "@/lib/data/projects";
+import { projects } from "@/lib/data/projects/projects";
 import { Project } from "@/types";
 import { staggerContainer, fadeUp } from "@/lib/animations/variants";
 

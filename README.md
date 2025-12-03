@@ -33,6 +33,7 @@
 - 재사용 가능한 애니메이션 컴포넌트
 - 반응형 네비게이션
 - 프로젝트 모달 시스템
+- **미디어 뷰어 (이미지/동영상/GIF 지원)** ⭐ NEW!
 - AI 챗봇 플로팅 UI (추후 LLM 연동 가능)
 
 ## 🎨 디자인 시스템
@@ -106,20 +107,33 @@ src/
 ### 개인 정보 수정
 1. `src/components/landing/HeroSection.tsx` - 이름, 역할 수정
 2. `src/lib/data/about.ts` - About 페이지 내용 수정
-3. `src/lib/data/projects.ts` - 프로젝트 정보 추가/수정
+3. `src/lib/data/projects/` - 프로젝트 정보 추가/수정
 4. `src/lib/data/skills.ts` - 스킬 정보 수정
 5. `src/app/contact/page.tsx` - 연락처 정보 수정
 
 ### 테마 색상 변경
 `tailwind.config.ts` 파일에서 색상 커스터마이징 가능
 
-### 이미지 추가
-`public/images/` 폴더에 이미지 추가 후 프로젝트 데이터에서 참조
+### 콘텐츠 추가 가이드
+- **프로젝트 추가**: `docs/how-to-add-project.md`
+- **이미지 추가**: `docs/how-to-add-images.md`
+- **동영상/GIF 추가**: `docs/how-to-add-videos.md` ⭐ NEW!
+  - Animated WebP (권장) - GIF 대비 70-90% 작은 용량
+  - 최적화된 GIF
+  - MP4 동영상 (lazy loading 지원)
+- **빠른 시작**: `docs/video-quick-start.md`
+
+## ✅ 최근 업데이트
+
+- [x] **미디어 뷰어 추가** (2024-12-03)
+  - Animated WebP, GIF, MP4 동영상 지원
+  - Lazy loading으로 성능 최적화
+  - 동영상 재생 컨트롤
+  - 포스터 이미지 지원
 
 ## 📝 추후 구현 예정
 
 - [ ] AI 챗봇 LLM 연동 (Groq/Gemini)
-- [ ] 프로젝트 이미지 캐러셀
 - [ ] MDX 블로그 섹션
 - [ ] 다크/라이트 모드 토글
 - [ ] 다국어 지원

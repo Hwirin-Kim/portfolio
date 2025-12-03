@@ -4,6 +4,7 @@ import { ShowcaseProject } from "@/types";
 import { motion } from "framer-motion";
 import Accordion from "../ui/Accordion";
 import ImageCarousel from "../ui/ImageCarousel";
+import MediaViewer from "../ui/MediaViewer";
 
 interface ProjectModalContributionProps {
   project: ShowcaseProject;
@@ -13,19 +14,25 @@ export default function ProjectModalContribution({
   project,
 }: ProjectModalContributionProps) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* 담당 업무 - Accordion */}
       <div>
-        <h3 className="text-xl font-bold mb-3">담당 업무</h3>
+        <h3 className="text-xl font-bold mb-4">담당 업무</h3>
         <div className="space-y-3">
           {project.myContribution.responsibilities.map((resp, index) => (
             <Accordion key={index} title={resp.title}>
               {resp.details ? (
                 <div className="space-y-4">
-                  {/* 이미지 먼저 */}
-                  {resp.details.images && resp.details.images.length > 0 && (
-                    <ImageCarousel images={resp.details.images} />
+                  {/* 미디어 먼저 (새로운 방식) */}
+                  {resp.details.media && resp.details.media.length > 0 && (
+                    <MediaViewer media={resp.details.media} />
                   )}
+                  {/* 이미지 (기존 방식 - 하위 호환성) */}
+                  {!resp.details.media &&
+                    resp.details.images &&
+                    resp.details.images.length > 0 && (
+                      <ImageCarousel images={resp.details.images} />
+                    )}
                   {/* 설명 */}
                   <p className="text-white/70 leading-relaxed whitespace-pre-line">
                     {resp.details.description}
@@ -39,132 +46,100 @@ export default function ProjectModalContribution({
         </div>
       </div>
 
-      {/* 주요 성과 */}
-      {project.myContribution.achievements &&
-        project.myContribution.achievements.length > 0 && (
+      {/* 성능개선 & 문제해결 */}
+      {project.myContribution.problemSolvings &&
+        project.myContribution.problemSolvings.length > 0 && (
           <div>
-            <h3 className="text-xl font-bold mb-3">주요 성과</h3>
-            <div className="space-y-4">
-              {project.myContribution.achievements.map((achievement, index) => (
-                <div
-                  key={index}
-                  className="bg-card/50 p-6 rounded-xl border border-border"
-                >
-                  <h4 className="text-lg font-bold mb-4 text-primary">
-                    {achievement.title}
-                  </h4>
-
-                  {/* 이미지 먼저 */}
-                  {achievement.images && achievement.images.length > 0 && (
-                    <div className="mb-4">
-                      <ImageCarousel images={achievement.images} />
-                    </div>
-                  )}
-
-                  {/* 설명 */}
-                  <p className="text-white/70 mb-4">{achievement.description}</p>
-
-                  {/* 메트릭 */}
-                  {achievement.metrics && (
-                    <div className="bg-gradient-to-br from-primary/20 to-primary-light/20 p-4 rounded-lg border border-primary">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="text-center">
-                          <p className="text-white/50 text-sm mb-1">Before</p>
-                          <p className="text-2xl font-bold text-red-400">
-                            {achievement.metrics.before}
-                          </p>
-                        </div>
-                        <div className="text-center">
-                          <p className="text-white/50 text-sm mb-1">After</p>
-                          <p className="text-2xl font-bold text-primary">
-                            {achievement.metrics.after}
-                          </p>
-                        </div>
-                      </div>
-                      <p className="text-center mt-2 text-sm text-white/60">
-                        {achievement.metrics.label}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-      {/* 기술적 도전 & 해결 */}
-      {project.myContribution.challenges &&
-        project.myContribution.challenges.length > 0 && (
-          <div>
-            <h3 className="text-xl font-bold mb-4">기술적 도전 & 해결</h3>
+            <h3 className="text-xl font-bold mb-4">성능개선 & 문제해결</h3>
             <div className="space-y-6">
-              {project.myContribution.challenges.map((challenge, index) => (
-                <div
+              {project.myContribution.problemSolvings.map((item, index) => (
+                <motion.div
                   key={index}
-                  className="bg-card/30 backdrop-blur-sm rounded-2xl p-6 border-2 border-border hover:border-primary/50 transition-all"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-card/30 backdrop-blur-sm rounded-2xl p-6 border border-border hover:border-primary/30 transition-all"
                 >
-                  {/* Challenge Number */}
-                  <div className="flex items-start gap-4 mb-4">
+                  {/* 제목 + 번호 */}
+                  <div className="flex items-start gap-4 mb-5">
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center">
                       <span className="text-primary font-bold text-sm">
                         {index + 1}
                       </span>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="text-lg font-bold text-white/90">
-                        Challenge {index + 1}
-                      </h4>
-                    </div>
+                    <h4 className="text-lg font-bold text-white pt-1">
+                      {item.title}
+                    </h4>
                   </div>
 
-                  {/* 이미지 먼저 */}
-                  {challenge.images && challenge.images.length > 0 && (
-                    <div className="mb-4 ml-12">
-                      <ImageCarousel images={challenge.images} />
+                  {/* 미디어 (새로운 방식) */}
+                  {item.media && item.media.length > 0 && (
+                    <div className="mb-5 ml-12">
+                      <MediaViewer media={item.media} />
+                    </div>
+                  )}
+                  {/* 이미지 (기존 방식 - 하위 호환성) */}
+                  {!item.media && item.images && item.images.length > 0 && (
+                    <div className="mb-5 ml-12">
+                      <ImageCarousel images={item.images} />
                     </div>
                   )}
 
-                  <div className="space-y-4 ml-12">
-                    {/* Problem */}
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-red-400 font-bold text-sm">●</span>
-                        <h5 className="text-sm font-bold text-red-400">문제</h5>
-                      </div>
-                      <p className="text-white/70 text-sm leading-relaxed pl-4 border-l-2 border-red-400/30">
-                        {challenge.problem}
+                  <div className="space-y-5 ml-12">
+                    {/* 문제상황 */}
+                    <div className="bg-red-500/5 rounded-xl p-4 border-l-4 border-red-400">
+                      <h5 className="text-sm font-bold text-red-400 mb-2 flex items-center gap-2">
+                        <span>🔴</span> 문제상황
+                      </h5>
+                      <p className="text-white/70 text-sm leading-relaxed whitespace-pre-line">
+                        {item.problem}
                       </p>
                     </div>
 
-                    {/* Solution */}
-                    <div>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-primary font-bold text-sm">●</span>
-                        <h5 className="text-sm font-bold text-primary">해결</h5>
-                      </div>
-                      <p className="text-white/70 text-sm leading-relaxed pl-4 border-l-2 border-primary/30">
-                        {challenge.solution}
+                    {/* 해결과정 */}
+                    <div className="bg-primary/5 rounded-xl p-4 border-l-4 border-primary">
+                      <h5 className="text-sm font-bold text-primary mb-2 flex items-center gap-2">
+                        <span>🟢</span> 해결과정
+                      </h5>
+                      <p className="text-white/70 text-sm leading-relaxed whitespace-pre-line">
+                        {item.solution}
                       </p>
                     </div>
 
-                    {/* Result */}
-                    {challenge.result && (
-                      <div>
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-primary-light font-bold text-sm">
-                            ●
-                          </span>
-                          <h5 className="text-sm font-bold text-primary-light">
-                            결과
-                          </h5>
+                    {/* 결과 */}
+                    <div className="bg-blue-500/5 rounded-xl p-4 border-l-4 border-blue-400">
+                      <h5 className="text-sm font-bold text-blue-400 mb-2 flex items-center gap-2">
+                        <span>🔵</span> 결과
+                      </h5>
+                      <p className="text-white/70 text-sm leading-relaxed whitespace-pre-line">
+                        {item.result}
+                      </p>
+                    </div>
+
+                    {/* 메트릭 (수치가 있는 경우) */}
+                    {item.metrics && (
+                      <div className="bg-gradient-to-br from-primary/10 to-blue-500/10 p-4 rounded-xl border border-primary/30">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="text-center">
+                            <p className="text-white/50 text-xs mb-1">Before</p>
+                            <p className="text-xl font-bold text-red-400">
+                              {item.metrics.before}
+                            </p>
+                          </div>
+                          <div className="text-center">
+                            <p className="text-white/50 text-xs mb-1">After</p>
+                            <p className="text-xl font-bold text-primary">
+                              {item.metrics.after}
+                            </p>
+                          </div>
                         </div>
-                        <p className="text-white/80 text-sm leading-relaxed pl-4 border-l-2 border-primary-light/30 bg-primary/5 rounded p-2">
-                          {challenge.result}
+                        <p className="text-center mt-2 text-xs text-white/60">
+                          {item.metrics.label}
                         </p>
                       </div>
                     )}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -172,4 +147,3 @@ export default function ProjectModalContribution({
     </div>
   );
 }
-

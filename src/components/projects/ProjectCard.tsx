@@ -2,6 +2,7 @@
 
 import { Project, ProjectCategory } from "@/types";
 import SpotlightCard from "../animations/SpotlightCard";
+import Image from "next/image";
 
 interface ProjectCardProps {
   project: Project;
@@ -35,10 +36,14 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
       >
         {/* Image */}
         <div className="aspect-video bg-surface relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-light/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white/30 text-sm">Project Image</span>
-          </div>
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary-light/20 opacity-0 group-hover:opacity-100 transition-opacity z-10" />
 
           {/* 카테고리 뱃지 */}
           <div className="absolute top-3 left-3 flex gap-2">

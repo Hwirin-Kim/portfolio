@@ -1,0 +1,15 @@
+export const toddlierImages = {
+  main: "/projects/toddlier/image/main.webp",
+  book1: "/projects/toddlier/image/book.webp",
+  book2: "/projects/toddlier/image/book2.webp",
+  complete: "/projects/toddlier/image/complete.webp",
+  media_detail: "/projects/toddlier/image/media-detail.webp",
+  media: "/projects/toddlier/image/media.webp",
+  player: "/projects/toddlier/image/player.webp",
+  quiz: "/projects/toddlier/image/quiz.webp",
+  record: "/projects/toddlier/image/record.webp",
+  speak_mic: "/projects/toddlier/image/speak-mic.webp",
+  speak: "/projects/toddlier/image/speak.webp",
+  tutor: "/projects/toddlier/image/tutor.webp",
+  wordbook: "/projects/toddlier/image/wordbook.webp",
+};

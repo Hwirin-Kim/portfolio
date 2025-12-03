@@ -13,6 +13,7 @@ import {
 import { modalBackdrop, modalContent } from "@/lib/animations/variants";
 import { useState } from "react";
 import ImageCarousel from "@/components/ui/ImageCarousel";
+import MediaViewer from "@/components/ui/MediaViewer";
 import ProjectModalContribution from "@/components/projects/ProjectModalContribution";
 
 interface ProjectModalProps {
@@ -255,8 +256,17 @@ export default function ProjectModal({
               {/* Tab Content */}
               {activeTab === "overview" ? (
                 <div className="space-y-6">
-                  {/* 이미지 캐러셀 (작게) */}
-                  {project.overview.images &&
+                  {/* 미디어 뷰어 (새로운 방식 - 동영상/GIF 지원) */}
+                  {project.overview.media && project.overview.media.length > 0 && (
+                    <MediaViewer
+                      media={project.overview.media}
+                      className="max-w-2xl mx-auto"
+                    />
+                  )}
+
+                  {/* 이미지 캐러셀 (기존 방식 - 하위 호환성) */}
+                  {!project.overview.media &&
+                    project.overview.images &&
                     project.overview.images.length > 0 && (
                       <ImageCarousel
                         images={project.overview.images}

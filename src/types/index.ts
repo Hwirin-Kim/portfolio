@@ -28,6 +28,14 @@ interface BaseProject {
 // ============================================
 // Showcase 프로젝트 (전체 개발 참여)
 // ============================================
+// 미디어 타입 (이미지, 동영상, GIF)
+export interface MediaItem {
+  url: string; // 파일 경로
+  type?: "image" | "video" | "gif"; // 타입 (생략시 확장자로 자동 판별)
+  caption?: string; // 설명
+  poster?: string; // 동영상용 썸네일
+}
+
 export interface ProjectOverview {
   company?: string; // 회사명 또는 "개인프로젝트"
   period: string;
@@ -42,7 +50,8 @@ export interface ProjectOverview {
     notion?: string;
   };
   // 프로젝트 대표 이미지들 (선택 - 캐러셀용)
-  images?: string[];
+  images?: string[]; // 하위 호환성 유지
+  media?: MediaItem[]; // 새로운 미디어 지원
 }
 
 // 담당 업무 항목
@@ -50,35 +59,30 @@ export interface Responsibility {
   title: string; // 업무 제목 (리스트에 보임)
   details?: {
     description: string; // 상세 설명
-    images?: string[]; // 관련 이미지들 (선택)
+    images?: string[]; // 관련 이미지들 (선택) - 하위 호환성
+    media?: MediaItem[]; // 관련 미디어들 (선택) - 새로운 지원
   };
 }
 
-// 성과/개선 사항
-export interface Achievement {
-  title: string; // 예: "성능 최적화"
-  description: string; // 상세 설명
-  images?: string[]; // 관련 이미지들 (선택)
+// 성능개선 & 문제해결 (통합)
+export interface ProblemSolving {
+  title: string; // 제목 (예: "상품 로딩 성능 개선")
+  problem: string; // 문제상황 (여러 줄 가능)
+  solution: string; // 해결과정 (여러 줄 가능)
+  result: string; // 결과 (여러 줄 가능)
   metrics?: {
     // 수치로 표현 가능한 성과
     before: string;
     after: string;
     label: string; // 예: "로딩 시간"
   };
-}
-
-// 기술적 도전과 해결
-export interface Challenge {
-  problem: string; // 어떤 문제가 있었나
-  solution: string; // 어떻게 해결했나
-  result?: string; // 결과
-  images?: string[]; // 관련 이미지들 (선택)
+  images?: string[]; // 관련 이미지들 (선택) - 하위 호환성
+  media?: MediaItem[]; // 관련 미디어들 (선택) - 새로운 지원
 }
 
 export interface MyContribution {
   responsibilities: Responsibility[]; // 담당한 부분
-  achievements?: Achievement[]; // 주요 성과
-  challenges?: Challenge[]; // 기술적 도전과 해결
+  problemSolvings?: ProblemSolving[]; // 성능개선 & 문제해결
 }
 
 export interface ShowcaseProject extends BaseProject {
