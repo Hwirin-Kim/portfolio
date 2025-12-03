@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
+
+// GitHub Actions 배포 시에만 basePath 적용
+const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+const basePath = isGitHubPages ? "/portfolio" : "";
+
 const nextConfig = {
   reactStrictMode: true,
-  // 정적 배포를 위한 설정 (GitHub Pages, Netlify 등)
   output: "export",
-  basePath: "/portfolio",
-  assetPrefix: "/portfolio",
+  basePath: basePath,
+  assetPrefix: basePath,
   images: {
-    unoptimized: true, // Static export는 Image 최적화 미지원
+    unoptimized: true,
   },
 };
 
