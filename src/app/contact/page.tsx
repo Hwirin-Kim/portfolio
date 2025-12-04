@@ -7,6 +7,7 @@ import MagneticButton from "@/components/animations/MagneticButton";
 import ContactCard from "@/components/contact/ContactCard";
 import FAQCard from "@/components/contact/FAQCard";
 import { contactMethods, faqs, primaryEmail } from "@/lib/data/contact";
+import Link from "next/link";
 
 export default function ContactPage() {
   return (
@@ -106,18 +107,20 @@ export default function ContactPage() {
               당신의 아이디어를 현실로 만드는 데 도움을 드리겠습니다
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
+              <Link
                 href="/projects"
+                prefetch={false}
                 className="px-8 py-3 border border-primary text-primary font-medium rounded-lg hover:bg-primary/10 transition-all"
               >
                 View My Work
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/about"
+                prefetch={false}
                 className="px-8 py-3 border border-white/30 text-white font-medium rounded-lg hover:bg-white/5 transition-all"
               >
                 Learn More About Me
-              </a>
+              </Link>
             </div>
           </div>
         </ScrollReveal>
