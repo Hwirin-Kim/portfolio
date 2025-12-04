@@ -7,6 +7,7 @@ import ProcessCard from "@/components/about/ProcessCard";
 import TimelineCard from "@/components/about/TimelineCard";
 import { principles, workProcess, career, timeline } from "@/lib/data/about";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function AboutPage() {
   return (
@@ -103,12 +104,13 @@ export default function AboutPage() {
             <p className="text-lg text-white/70 mb-8">
               함께 멋진 프로젝트를 만들어보세요
             </p>
-            <a
+            <Link
               href="/contact"
+              prefetch={false}
               className="inline-block px-8 py-3 bg-primary text-black font-medium rounded-lg hover:bg-primary-light transition-all hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]"
             >
               Contact Me
-            </a>
+            </Link>
           </div>
         </ScrollReveal>
       </section>
