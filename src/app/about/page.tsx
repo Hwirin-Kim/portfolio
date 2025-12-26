@@ -5,7 +5,7 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 import PrincipleCard from "@/components/about/PrincipleCard";
 import ProcessCard from "@/components/about/ProcessCard";
 import TimelineCard from "@/components/about/TimelineCard";
-import { principles, workProcess, career, timeline } from "@/lib/data/about";
+import { principles, workProcess, career, certifications, timeline } from "@/lib/data/about";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -77,8 +77,25 @@ export default function AboutPage() {
         </div>
       </ScrollySection>
 
+      {/* Certifications */}
+      <ScrollySection title="자격증" index={3}>
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
+          <div className="space-y-12 pl-12">
+            {certifications.map((item, index) => (
+              <TimelineCard
+                key={index}
+                year={item.year}
+                title={item.title}
+                descriptions={item.descriptions}
+              />
+            ))}
+          </div>
+        </div>
+      </ScrollySection>
+
       {/* Education Timeline */}
-      <ScrollySection title="교육" index={3}>
+      <ScrollySection title="교육" index={4}>
         <div className="relative">
           <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/30" />
           <div className="space-y-12 pl-12">

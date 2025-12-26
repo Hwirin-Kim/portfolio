@@ -18,18 +18,18 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" prefetch={false} className="text-xl font-bold text-primary">
+        <Link href="/" prefetch={false} className="text-lg md:text-xl font-bold text-primary flex-shrink-0">
           Portfolio
         </Link>
 
-        <ul className="flex items-center gap-8">
+        <ul className="flex items-center gap-3 sm:gap-4 md:gap-8">
           {navigation.map((item) => (
             <li key={item.href}>
               <Link
                 href={item.href}
                 prefetch={false}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
+                  "text-xs sm:text-sm font-medium transition-colors hover:text-primary whitespace-nowrap",
                   pathname === item.href
                     ? "text-primary"
                     : "text-white/70"
