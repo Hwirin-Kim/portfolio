@@ -66,6 +66,14 @@ export const strengths = [
 
 export const career = [
   {
+    year: "2025. 12. ~ 현재",
+    title: "adds",
+    role: "Frontend Developer",
+    descriptions: [
+      "자사 앱 기획 및 개발",
+    ],
+  },
+  {
     year: "2023. 12. ~ 2025. 05. [1년 6개월]",
     title: "주식회사 네이처컴바인드",
     role: "Frontend Developer / 선임연구원",
@@ -74,6 +82,14 @@ export const career = [
       "SI 프로젝트 Full Stack 개발 및 유지보수",
       "AI 챗봇 프로젝트 개발 및 유지보수",
     ],
+  },
+];
+
+export const certifications = [
+  {
+    year: "2025. 12. 24",
+    title: "정보처리기사",
+    descriptions: ["한국산업인력공단"],
   },
 ];
 
